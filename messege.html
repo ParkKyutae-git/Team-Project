@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Chat Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+    </style>
+</head>
+<body class="bg-gray-200 h-screen w-full flex items-center justify-center font-sans antialiased">
+
+    <div class="w-[1024px] h-[720px] bg-white rounded-xl shadow-2xl flex overflow-hidden border border-gray-300">
+        
+        <aside class="w-[80px] bg-[#1e1e1e] flex flex-col items-center py-6 gap-6 z-10 shadow-lg shrink-0">
+            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center cursor-pointer hover:bg-white/20 transition group">
+                <span class="text-2xl group-hover:scale-110 transition-transform">🏠</span>
+            </div>
+            
+            <div class="w-8 h-[2px] bg-gray-700 rounded-full"></div>
+
+            <div class="w-12 h-12 bg-gradient-to-tr from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center text-white text-lg font-bold shadow-inner cursor-pointer hover:opacity-80 transition">
+                U
+            </div>
+        </aside>
+
+        <main class="flex-1 bg-gradient-to-b from-[#6ee7b7] to-[#fde047] flex flex-col relative overflow-hidden">
+            
+            <header class="h-14 bg-white/20 backdrop-blur-md border-b border-white/30 flex items-end px-4 gap-2 shrink-0">
+                <div class="px-6 py-2.5 bg-white/60 backdrop-blur-md rounded-t-xl text-sm font-bold text-gray-800 cursor-pointer shadow-sm relative">
+                    Section 1
+                    <div class="absolute bottom-0 left-0 w-full h-0.5 bg-green-500"></div>
+                </div>
+                <div class="px-6 py-2.5 hover:bg-white/30 rounded-t-xl text-sm font-medium text-gray-700 cursor-pointer transition">
+                    Section 2
+                </div>
+                
+                <div class="flex-1"></div> <div class="flex gap-2 pb-3">
+                    <button class="w-3 h-3 rounded-full bg-yellow-400 hover:bg-yellow-500 transition"></button>
+                    <button class="w-3 h-3 rounded-full bg-green-400 hover:bg-green-500 transition"></button>
+                    <button class="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 transition"></button>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6" id="chat-messages">
+                
+                <div class="flex flex-col items-start gap-1.5 w-full">
+                    <div class="max-w-[60%] px-5 py-3.5 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl rounded-tl-sm text-gray-800 shadow-sm leading-relaxed">
+                        안녕하세요! 화면 디자인을 업데이트했습니다. 확인 부탁드려요.
+                    </div>
+                    <div class="flex gap-1.5 text-sm bg-white/40 backdrop-blur-sm px-2 py-1 rounded-lg shadow-sm border border-white/30">
+                        <span class="cursor-pointer hover:scale-110 transition">☑️ 1</span>
+                        <span class="cursor-pointer hover:scale-110 transition">👍 2</span>
+                    </div>
+                </div>
+
+                </div>
+
+            <div class="p-6 pt-2 flex flex-col gap-3 shrink-0">
+                
+                <div class="flex items-center gap-3 bg-white/60 backdrop-blur-md border border-white/60 p-2 pl-4 rounded-xl shadow-sm focus-within:ring-2 focus-within:ring-green-500 focus-within:bg-white/80 transition-all duration-200">
+                    <button class="text-gray-500 hover:text-green-600 transition flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/50">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <input type="text" id="message-input" class="bg-transparent flex-1 outline-none text-gray-800 placeholder-gray-500 py-2" placeholder="메세지 입력 (엔터키로 전송)">
+                </div>
+
+                <div class="bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/50 rounded-xl py-2.5 text-center text-sm font-medium text-gray-700 cursor-pointer transition shadow-sm relative group" id="toggle-btn">
+                    토글 바
+                    <div class="text-[10px] text-gray-500 absolute bottom-1 left-1/2 transform -translate-x-1/2 group-hover:-translate-y-0.5 transition-transform">
+                        ︽
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const messageInput = document.getElementById('message-input');
+        const chatMessages = document.getElementById('chat-messages');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        // 메시지 전송 기능 (Tailwind 클래스로 DOM 생성)
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                
+                // 컨테이너 생성 (flex flex-col items-end)
+                const newRow = document.createElement('div');
+                newRow.className = 'flex flex-col items-end gap-1.5 w-full mt-2 animate-[fadeIn_0.3s_ease-out]';
+                
+                // 말풍선 생성 (다크 테마 기반 강조 색상)
+                const newBubble = document.createElement('div');
+                newBubble.className = 'max-w-[60%] px-5 py-3.5 bg-[#1e1e1e] text-white border border-gray-800 rounded-2xl rounded-tr-sm shadow-md break-words leading-relaxed';
+                newBubble.textContent = this.value;
+                
+                newRow.appendChild(newBubble);
+                chatMessages.appendChild(newRow);
+                
+                // 입력창 초기화 및 스크롤
+                this.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+
+        toggleBtn.addEventListener('click', function() {
+            alert('토글 바가 클릭되었습니다.');
+        });
+    </script>
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>

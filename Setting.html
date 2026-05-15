@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration Tool - Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+    </style>
+</head>
+<body class="bg-gray-200 h-screen w-full flex items-center justify-center font-sans antialiased">
+
+    <div class="w-[1024px] h-[720px] bg-white rounded-xl shadow-2xl flex overflow-hidden border border-gray-300">
+        
+        <aside class="w-[280px] bg-[#1e1e1e] text-white flex flex-col shrink-0">
+            <div class="p-6">
+                <div class="flex items-center gap-2 text-green-400 font-bold text-xl tracking-wider">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
+                    <span>M-TOOL</span>
+                </div>
+            </div>
+
+            <div class="px-4 mb-6">
+                <div class="bg-white text-black rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">U</div>
+                        <span class="font-medium text-sm">User</span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-600 border border-blue-200">Member</span>
+                    </div>
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg bg-white/10 text-white border-l-4 border-green-400">
+                    <span class="font-medium text-sm">내 계정</span>
+                    <span class="text-gray-400">›</span>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition">
+                    <span class="font-medium text-sm">콘텐츠 및 외관</span>
+                    <span class="text-gray-400">›</span>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition">
+                    <span class="font-medium text-sm">알림 및 소리</span>
+                    <span class="text-gray-400">›</span>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition">
+                    <span class="font-medium text-sm">개인정보 보호 및 보안</span>
+                    <span class="text-gray-400">›</span>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition">
+                    <span class="font-medium text-sm">연동된 앱</span>
+                    <span class="text-gray-400">›</span>
+                </a>
+                
+                <div class="pt-4 mt-4 border-t border-white/10">
+                    <a href="#" class="flex items-center p-3 rounded-lg text-red-400 hover:bg-red-400/10 transition">
+                        <span class="font-medium text-sm">로그아웃</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 bg-gradient-to-b from-[#6ee7b7] to-[#fde047] flex flex-col relative overflow-hidden">
+            
+            <header class="p-6 pb-2">
+                <div class="relative w-2/3">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="text" class="bg-white/40 backdrop-blur-sm border border-white/50 text-gray-800 text-sm rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none block w-full pl-10 p-2.5 placeholder-gray-600 transition" placeholder="설정 검색...">
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-6 pt-4">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b border-gray-800/20 pb-2 inline-block w-full max-w-sm">내 계정</h2>
+                
+                <div class="space-y-3 max-w-2xl">
+                    
+                    <div class="bg-white/30 backdrop-blur-md rounded-xl p-5 border border-white/40 shadow-sm flex items-center justify-between hover:bg-white/50 hover:-translate-y-0.5 transition cursor-pointer group">
+                        <span class="font-semibold text-gray-800">프로필 편집</span>
+                        <span class="text-green-600 font-bold text-lg group-hover:translate-x-1 transition-transform">›</span>
+                    </div>
+
+                    <div class="bg-white/30 backdrop-blur-md rounded-xl p-5 border border-white/40 shadow-sm flex items-center justify-between hover:bg-white/50 hover:-translate-y-0.5 transition cursor-pointer group">
+                        <span class="font-semibold text-gray-800">이메일 주소 변경</span>
+                        <span class="text-green-600 font-bold text-lg group-hover:translate-x-1 transition-transform">›</span>
+                    </div>
+
+                    <div class="bg-white/30 backdrop-blur-md rounded-xl p-5 border border-white/40 shadow-sm flex items-center justify-between hover:bg-white/50 hover:-translate-y-0.5 transition cursor-pointer group">
+                        <span class="font-semibold text-gray-800">비밀번호 변경</span>
+                        <span class="text-green-600 font-bold text-lg group-hover:translate-x-1 transition-transform">›</span>
+                    </div>
+
+                    <div class="bg-white/30 backdrop-blur-md rounded-xl p-5 border border-white/40 shadow-sm flex items-center justify-between hover:bg-white/50 hover:-translate-y-0.5 transition cursor-pointer group">
+                        <span class="font-semibold text-gray-800">2단계 인증(2FA) 설정</span>
+                        <span class="text-green-600 font-bold text-lg group-hover:translate-x-1 transition-transform">›</span>
+                    </div>
+
+                    <div class="bg-white/30 backdrop-blur-md rounded-xl p-5 border border-white/40 shadow-sm flex items-center justify-between hover:bg-white/50 hover:-translate-y-0.5 transition cursor-pointer group">
+                        <span class="font-semibold text-gray-800">세션 관리 및 기기 로그아웃</span>
+                        <span class="text-green-600 font-bold text-lg group-hover:translate-x-1 transition-transform">›</span>
+                    </div>
+
+                    <div class="bg-white/30 backdrop-blur-md rounded-xl p-5 border border-white/40 shadow-sm flex items-center justify-between hover:bg-white/50 hover:-translate-y-0.5 transition cursor-pointer group">
+                        <span class="font-semibold text-red-600">계정 비활성화 및 삭제</span>
+                        <span class="text-red-600 font-bold text-lg group-hover:translate-x-1 transition-transform">›</span>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

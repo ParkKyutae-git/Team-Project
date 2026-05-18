@@ -1,0 +1,89 @@
+/* src/index.css */
+
+/* 1. Tailwind의 기본 스타일 지시문 */
+@import "tailwindcss";
+
+/* 아래 @layer base 등 기존 코드는 그대로 둡니다 */
+
+/* 2. 전역 베이스 스타일 설정 */
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-gray-200 overflow-hidden; /* 전체 배경색 및 스크롤 방지 */
+  }
+
+  /* 커스텀 스크롤바 스타일 (styles.css 내용 유지) */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* 3. 재사용 가능한 컴포넌트 클래스 (애니메이션 등) */
+@layer components {
+  /* 토스트 컨테이너 */
+  .toast-container {
+    @apply fixed bottom-6 right-6 z-[9999] flex flex-col gap-2 pointer-events-none;
+  }
+
+  /* 토스트 개별 아이템 스타일 */
+  .toast {
+    @apply flex items-center gap-2 min-w-[220px] px-[18px] py-3 rounded-[10px] text-sm font-semibold text-white shadow-2xl pointer-events-auto;
+    animation: toastIn 0.3s ease forwards;
+  }
+
+  .toast.leaving {
+    animation: toastOut 0.3s ease forwards;
+  }
+
+  /* 토스트 타입별 색상 */
+  .toast.success { @apply bg-[#1e1e1e] border-l-4 border-l-green-400; }
+  .toast.error   { @apply bg-[#1e1e1e] border-l-4 border-l-red-500; }
+  .toast.warning { @apply bg-[#1e1e1e] border-l-4 border-l-yellow-400; }
+  .toast.info    { @apply bg-[#1e1e1e] border-l-4 border-l-blue-400; }
+
+  /* 로그인 페이지 구름 오브젝트 공통 스타일 */
+  .cloud-obj {
+    @apply absolute bg-white/80 rounded-[50px] pointer-events-none;
+  }
+  .cloud-obj::before, .cloud-obj::after {
+    @apply content-[''] absolute bg-white/80 rounded-full;
+  }
+}
+
+/* 4. 커스텀 키프레임 애니메이션 (Tailwind config에서 정의하지 않을 경우 대비) */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(110%); }
+}
+
+@keyframes float {
+  0%   { transform: translateX(-200px); }
+  100% { transform: translateX(100vw); }
+}
+
+/* 기존 styles.css의 특수 유틸리티 유지 */
+.server-indicator {
+  @apply absolute -left-1 w-2 h-5 bg-white rounded-r-full scale-y-0 transition-transform duration-200 origin-left;
+}
+.server-btn.active .server-indicator {
+  @apply scale-y-100;
+}
